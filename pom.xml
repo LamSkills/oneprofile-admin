@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <artifactId>bhavio-admin-parent</artifactId>
+    <artifactId>oneprofile-admin-parent</artifactId>
     <groupId>com.newlight77</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>bhavio-admin</module>
+        <module>oneprofile-admin</module>
     </modules>
 
     <repositories>
