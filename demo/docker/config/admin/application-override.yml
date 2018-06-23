@@ -1,0 +1,21 @@
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    contextPath: /sso
+
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      access-token-uri: http://server:8888/uaa/oauth/token
+      user-authorization-uri: http://localhost:8888/uaa/oauth/authorize
+    resource:
+      user-info-uri: http://server:8888/uaa/user
+
+
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework.security: DEBUG
