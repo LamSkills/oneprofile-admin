@@ -4,22 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
-    <artifactId>oneprofile-admin-parent</artifactId>
+    <artifactId>oneprofile-admin-demo-parent</artifactId>
     <groupId>com.newlight77</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>oneprofile-admin</module>
-        <module>demo</module>
+        <module>oneprofile-admin-data-injection-spark</module>
     </modules>
-
-    <repositories>
-        <repository>
-            <id>localrepository</id>
-            <url>file://Users/kong/.m2/repository</url>
-        </repository>
-    </repositories>
-
 </project>
