@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -36,9 +37,10 @@ public class UserJsonInjectionRunner implements CommandLineRunner {
   @Override
   public void run(final String... args) throws Exception {
     String path = Paths.get(dataPath, "user.json").toString();
-    if (StringUtils.isBlank(dataPath)) {
+    if (StringUtils.isBlank(dataPath) || Files.isDirectory(Paths.get(path))) {
       path = this.getClass().getResource("/data/user.json").getPath();
     }
+    LOGGER.info("injecting data from file: {}", path);
 
     Dataset<UserEntity> ds = sparkSession.sqlContext().read()
         .option("mode", "DROPMALFORMED")
