@@ -11,9 +11,10 @@ services:
         - "8080:8080"
         - "5002:5002"
       volumes:
+        - ./oneprofile-admin-data-injection/src/main/resources/data/user.json:/data/user.json
         - ./docker/config/admin/run.sh:/demo/run.sh
         - ./docker/config/admin/logback.xml:/demo/config/logback.xml
-        - ./docker/config/admin/application-override.yml:/demo/config/application-override.yml
+        - ./docker/config/admin/application.yml:/demo/config/application.yml
         - ./docker/config/admin/spark.properties:/demo/config/spark.properties
         - ./oneprofile-admin-data-injection/target/oneprofile-admin-data-injection-fat-exec.jar:/demo/jars/app-fat-exec.jar
       working_dir: "/demo"

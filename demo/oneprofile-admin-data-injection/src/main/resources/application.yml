@@ -15,7 +15,7 @@ spring:
     neo4j:
       username: neo4j
       password: secret
-      auto-index: none
-      uri: bolt://7687
 
+#data:
+#  path: /data/
 

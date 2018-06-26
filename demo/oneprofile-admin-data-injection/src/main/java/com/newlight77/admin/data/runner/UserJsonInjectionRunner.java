@@ -1,8 +1,9 @@
 package com.newlight77.admin.data.runner;
 
-import com.newlight77.admin.data.repository.UserRepository;
 import com.newlight77.admin.data.csv.SparkUserMapper;
 import com.newlight77.admin.data.entity.UserEntity;
+import com.newlight77.admin.data.repository.UserRepository;
+import org.apache.commons.lang.StringUtils;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Encoders;
@@ -10,9 +11,10 @@ import org.apache.spark.sql.SparkSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 
-import java.net.URL;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class UserJsonInjectionRunner implements CommandLineRunner {
@@ -28,15 +30,21 @@ public class UserJsonInjectionRunner implements CommandLineRunner {
   @Autowired
   private SparkSession sparkSession;
 
+  @Value("${data.path:/data}")
+  String dataPath;
+
   @Override
   public void run(final String... args) throws Exception {
-    URL url = this.getClass().getResource("/data/user.json");
+    String path = Paths.get(dataPath, "user.json").toString();
+    if (StringUtils.isBlank(dataPath)) {
+      path = this.getClass().getResource("/data/user.json").getPath();
+    }
 
     Dataset<UserEntity> ds = sparkSession.sqlContext().read()
         .option("mode", "DROPMALFORMED")
         .option("header", "true")
         .option("charset", "UTF-8")
-        .json(url.getPath())
+        .json(path)
         .map(new SparkUserMapper(),
             Encoders.kryo(UserEntity.class));
 
