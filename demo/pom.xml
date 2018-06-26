@@ -10,6 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>oneprofile-admin-data-injection-spark</module>
+        <module>oneprofile-admin-data-injection</module>
     </modules>
 </project>

@@ -15,7 +15,7 @@ public class AccountRoleRelationEntity {
   private Long id;
 
   @StartNode
-  private AccountEntity account;
+  private UserEntity user;
 
   @EndNode
   private RoleEntity role;

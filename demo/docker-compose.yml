@@ -2,9 +2,11 @@ version: '3'
 
 services:
 
-    admin:
+    admin-demo:
       image: java:8-alpine
       hostname: client
+      links:
+        - neo4j
       ports:
         - "8080:8080"
         - "5002:5002"
@@ -12,8 +14,18 @@ services:
         - ./docker/config/admin/run.sh:/demo/run.sh
         - ./docker/config/admin/logback.xml:/demo/config/logback.xml
         - ./docker/config/admin/application-override.yml:/demo/config/application-override.yml
-        - ./springboot2-oauth2-resource-sso-demo/target/springboot2-oauth2-resource-sso-demo-fat-exec.jar:/demo/jars/app-fat-exec.jar
+        - ./docker/config/admin/spark.properties:/demo/config/spark.properties
+        - ./oneprofile-admin-data-injection/target/oneprofile-admin-data-injection-fat-exec.jar:/demo/jars/app-fat-exec.jar
       working_dir: "/demo"
 #      command: "java -jar /demo/jars/app-fat-exec.jar"
 #      command: "java -jar /demo/jars/app-fat-exec.jar --jwt.publickey.path=/demo/config/key.pub"
       command: "/demo/run.sh 5002"
+
+    neo4j:
+      image: neo4j:latest
+      hostname: neo4j
+      ports:
+        - "7474:7474"
+        - "7687:7687"
+      volumes:
+        - /tmp/neo4j:/data

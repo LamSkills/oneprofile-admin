@@ -28,5 +28,4 @@ public class AccountEntity {
 
   @Relationship(type = "HAS_ROLE", direction = Relationship.OUTGOING)
   private Set<RoleEntity> roles;
-
 }

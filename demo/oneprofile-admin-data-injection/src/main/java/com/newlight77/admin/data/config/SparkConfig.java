@@ -10,10 +10,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:spark.properties")
 public class SparkConfig {
 
-    @Value("${app.name:core-data}")
+    @Value("${app.name:admin-data}")
     private String appName;
 
     @Value("${master.uri:localhost}")
