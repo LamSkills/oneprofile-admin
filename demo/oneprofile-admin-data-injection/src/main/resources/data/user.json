@@ -1,5 +1,5 @@
 [
-  {"lastname" : "TO", "firstname" : "Kong", "username" : "newlight77@gmail.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "admin", "rights" : ["read", "write"]}]}]},
-  {"lastname" : "LAMOUCHI", "firstname" : "Nebrass", "username" : "lnibrass@gmail.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "admin", "rights" : ["read"]}]}]},
-  {"lastname" : "GUIMEZANES", "firstname" : "benoit", "username" : "b.guimezane@groupeonepoint.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "admin", "rights" : ["read"]}]}]}
+  {"lastname" : "TO", "firstname" : "Kong", "username" : "newlight77@gmail.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "owner", "rights" : ["admin_read", "admin_write", "admin_delete"]}]}]},
+  {"lastname" : "LAMOUCHI", "firstname" : "Nebrass", "username" : "lnibrass@gmail.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "master", "rights" : ["admin_read", "admin_write", "admin_delete"]}]}]},
+  {"lastname" : "GUIMEZANES", "firstname" : "benoit", "username" : "b.guimezane@groupeonepoint.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "developer", "rights" : ["admin_read"]}]}]}
 ]

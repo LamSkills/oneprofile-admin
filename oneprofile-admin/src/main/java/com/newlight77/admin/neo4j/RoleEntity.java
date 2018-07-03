@@ -14,16 +14,19 @@ import java.util.Set;
 @Getter
 @ToString
 @EqualsAndHashCode
-@NodeEntity(label = "ROLE")
+@NodeEntity(label = "RoleDto")
 public class RoleEntity implements Serializable{
 
   private static final long serialVersionUID = -3797459194489226166L;
 
   @Id
   private String name;
-  private Set<String> rights;
+//  private Set<String> rights;
 
   @Relationship(type = "HAS_ROLE", direction = Relationship.INCOMING)
-  private List<UserRoleRelationEntity> userRoles;
+  private Set<UserRoleRelationEntity> userRoles;
+
+  @Relationship(type = "ROLE_RIGHT", direction = Relationship.OUTGOING)
+  private Set<RightEntity> rights;
 
 }

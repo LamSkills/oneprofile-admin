@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @ToString
 @EqualsAndHashCode
-@NodeEntity(label = "User")
+@NodeEntity(label = "UserDto")
 public class UserEntity implements Serializable {
 
   private static final long serialVersionUID = -2587934582432669382L;

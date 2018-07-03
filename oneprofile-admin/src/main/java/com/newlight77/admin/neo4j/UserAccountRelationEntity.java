@@ -1,4 +1,4 @@
-package com.newlight77.admin.repository;
+package com.newlight77.admin.neo4j;
 
 import com.newlight77.admin.neo4j.AccountEntity;
 import com.newlight77.admin.neo4j.UserEntity;

@@ -18,10 +18,10 @@ public interface UserRepository extends Neo4jRepository<UserEntity, Long> {
   Collection<UserEntity> findByFirstnameAndLastname(@Param("firstname") String firstname,
                                                     @Param("lastname") String lastname);
 
-  @Query("MATCH (u:USER)-[ua:USER_ACCOUNT]-(a:ACCOUNT)-[ar:HAS_ROLE]-(r:ROLE) RETURN u,a,r LIMIT {limit}")
-  Collection<UserEntity> userRoles(@Param("limit") int limit);
-
-  @Query("MATCH (u:USER)-[ua:USER_ACCOUNT]-(a:ACCOUNT) RETURN l,a LIMIT {limit}")
+  @Query("MATCH (u:UserDto)-[ua:USER_ACCOUNT]-(a:AccountDto) RETURN l,a LIMIT {limit}")
   Collection<UserEntity> userAccounts(@Param("limit") int limit);
+
+  @Query("MATCH (us:UserDto)-[ua:USER_ACCOUNT]-(ac:AccountDto)-[ar:HAS_ROLE]-(ro:RoleDto)-[rr:ROLE_RIGHT]-(ri:RightDto) RETURN us,ac,ro,ro LIMIT {limit}")
+  Collection<UserEntity> userRoles(@Param("limit") int limit);
 
 }
