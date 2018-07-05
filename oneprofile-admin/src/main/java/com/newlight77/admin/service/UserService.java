@@ -44,15 +44,15 @@ public class UserService {
     }
 
     @Rights(rights = Right.ADMIN_READ)
-    public UserDto findById(Long id) {
-        return userRepository.findById(id)
-                .map(UserMapper::to)
-                .orElseThrow(() -> new NotFoundException("Resource not found"));
+    public void deleteById(String id) {
+        userRepository.deleteById(id);
     }
 
     @Rights(rights = Right.ADMIN_READ)
-    public void deleteById(Long aLong) {
-        userRepository.deleteById(aLong);
+    public UserDto findById(String id) {
+        return userRepository.findById(id)
+                .map(UserMapper::to)
+                .orElseThrow(() -> new NotFoundException("Resource not found"));
     }
 
     @Rights(rights = Right.ADMIN_READ)

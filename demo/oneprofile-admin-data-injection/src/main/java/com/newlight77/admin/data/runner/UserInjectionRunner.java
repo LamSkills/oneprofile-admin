@@ -1,11 +1,11 @@
 package com.newlight77.admin.data.runner;
 
-import com.newlight77.admin.data.repository.UserRepository;
-import com.newlight77.admin.data.entity.AccountEntity;
-import com.newlight77.admin.data.entity.RoleEntity;
-import com.newlight77.admin.data.entity.UserEntity;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.SparkSession;
+import com.newlight77.admin.neo4j.RightEntity;
+import com.newlight77.admin.repository.UserRepository;
+import com.newlight77.admin.neo4j.AccountEntity;
+import com.newlight77.admin.neo4j.RoleEntity;
+import com.newlight77.admin.neo4j.UserEntity;
+import com.newlight77.right.model.Right;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spark_project.guava.collect.Sets;
@@ -21,18 +21,23 @@ public class UserInjectionRunner implements CommandLineRunner {
 
   @Override
   public void run(final String... args) throws Exception {
+    RightEntity right = RightEntity.builder()
+            .primary("admin_user")
+            .secondary("admin_resource")
+            .rights(Sets.newHashSet(Right.ADMIN_WRITE))
+            .build();
     RoleEntity role = RoleEntity.builder()
         .name("admin")
-        .rights(Sets.newHashSet("read"))
+        .rights(Sets.newHashSet(right))
         .build();
     AccountEntity account = AccountEntity.builder()
         .name("default")
         .roles(Sets.newHashSet(role))
         .build();
     UserEntity entity = UserEntity.builder()
-        .lastname("Jean")
-        .firstname("PLAMONDON")
-        .username("jeanplamondon@gmail.com")
+        .lastname("To")
+        .firstname("Kong")
+        .username("newlight77@gmail.com")
         .accounts(Sets.newHashSet(account))
         .build();
     userRepository.save(entity);

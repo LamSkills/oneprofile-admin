@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Collection;
 
-public interface UserRepository extends Neo4jRepository<UserEntity, Long> {
+public interface UserRepository extends Neo4jRepository<UserEntity, String> {
 
   Page<UserEntity> findAll(Pageable pageable);
 

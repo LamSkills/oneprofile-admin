@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @ToString
 @EqualsAndHashCode
-@NodeEntity(label = "RoleDto")
+@NodeEntity(label = "Role")
 public class RoleEntity implements Serializable{
 
   private static final long serialVersionUID = -3797459194489226166L;

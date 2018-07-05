@@ -1,8 +1,8 @@
 package com.newlight77.admin.data.runner;
 
 import com.newlight77.admin.data.csv.SparkUserMapper;
-import com.newlight77.admin.data.entity.UserEntity;
-import com.newlight77.admin.data.repository.UserRepository;
+import com.newlight77.admin.neo4j.UserEntity;
+import com.newlight77.admin.repository.UserRepository;
 import org.apache.commons.lang.StringUtils;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
@@ -37,7 +37,7 @@ public class UserJsonInjectionRunner implements CommandLineRunner {
   @Override
   public void run(final String... args) throws Exception {
     String path = Paths.get(dataPath, "user.json").toString();
-    if (StringUtils.isBlank(dataPath) || Files.isDirectory(Paths.get(path))) {
+    if (StringUtils.isBlank(dataPath) || !Files.isDirectory(Paths.get(path))) {
       path = this.getClass().getResource("/data/user.json").getPath();
     }
     LOGGER.info("injecting data from file: {}", path);

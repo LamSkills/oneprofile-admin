@@ -1,9 +1,11 @@
 package com.newlight77.admin.data.config;
 
+import com.newlight77.admin.data.runner.UserJsonInjectionRunner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -47,4 +49,10 @@ public class SparkConfig {
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
+
+    @Bean
+    CommandLineRunner userJsonInjectionRunner() {
+        return new UserJsonInjectionRunner();
+    }
+
 }

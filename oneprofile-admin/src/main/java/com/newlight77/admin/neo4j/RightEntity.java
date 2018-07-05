@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @ToString
 @EqualsAndHashCode
-@NodeEntity(label = "RightDto")
+@NodeEntity(label = "Right")
 @CompositeIndex(unique = true, properties = {"primary", "secondary"})
 public class RightEntity implements Serializable{
 

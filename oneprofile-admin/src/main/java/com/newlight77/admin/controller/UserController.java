@@ -27,13 +27,13 @@ public class UserController {
   }
 
   @GetMapping(value = "/{id}")
-  public UserDto findById(Long id) {
+  public UserDto findById(String id) {
     return userService.findById(id);
   }
 
   @DeleteMapping(value = "/{id}")
-  public void deleteById(Long aLong) {
-    userService.deleteById(aLong);
+  public void deleteById(String id) {
+    userService.deleteById(id);
   }
 
   @GetMapping(value = "/page")
