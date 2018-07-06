@@ -22,8 +22,10 @@ public class UserController {
   }
 
   @PostMapping(value = "")
-  public UserDto create(@RequestBody UserDto user) {
-    return userService.save(user);
+  public UserDto create(
+          @RequestHeader String username,
+          @RequestBody UserDto user) {
+    return userService.save(username, user);
   }
 
   @GetMapping(value = "/{id}")

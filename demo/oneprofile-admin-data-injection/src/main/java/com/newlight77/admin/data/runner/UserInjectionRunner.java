@@ -22,9 +22,9 @@ public class UserInjectionRunner implements CommandLineRunner {
   @Override
   public void run(final String... args) throws Exception {
     RightEntity right = RightEntity.builder()
-            .primary("admin_user")
-            .secondary("admin_resource")
-            .rights(Sets.newHashSet(Right.ADMIN_WRITE))
+            .primary("newlight77@gmail.com")
+            .secondary("UserService")
+            .rights(Sets.newHashSet(Right.ADMIN_WRITE, Right.ADMIN_READ, Right.ADMIN_DELETE))
             .build();
     RoleEntity role = RoleEntity.builder()
         .name("admin")

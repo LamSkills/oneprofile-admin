@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 
 @Configuration
-@EnableNeo4jRepositories(basePackages = { "com.bhavio.core.repository.user.neo4j" })
-@EntityScan(basePackages = "com.bhavio.core.entity.user.neo4j")
+@EnableNeo4jRepositories(basePackages = { "com.newlight77.admin.repository" })
+@EntityScan(basePackages = "com.newlight77.admin.neo4j")
 public class UserAccountConfig {
 
   @Autowired
@@ -27,11 +27,12 @@ public class UserAccountConfig {
   private UserRepository userRepository;
 
   @Bean
-  public AccountService accountRepository() {
+  public AccountService accountService() {
     return new AccountService(accountRepository);
   }
+
   @Bean
-  public RoleService roleRepository() {
+  public RoleService roleService() {
     return new RoleService(roleRepository);
   }
 

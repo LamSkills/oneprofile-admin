@@ -28,7 +28,7 @@ public class UserService {
     }
 
     @Rights(rights = Right.ADMIN_WRITE)
-    public UserDto save(UserDto user) {
+    public UserDto save(String username, UserDto user) {
         UserEntity entity = UserMapper.from(user);
         return UserMapper.to(userRepository.save(entity));
     }
