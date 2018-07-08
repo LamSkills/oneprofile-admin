@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -24,14 +25,13 @@ public class RightService {
     this.rightRepository = roleRepository;
   }
 
-  @Rights(rights = Right.ADMIN_WRITE)
   public RightDto save(RightDto dto) {
     RightEntity entity = RightMapper.from(dto);
     return RightMapper.to(rightRepository.save(entity));
   }
-  @Rights(rights = Right.ADMIN_WRITE)
-  public List<RightDto> saveAll(Iterable<RightDto> iterable) {
-    Iterable<RightEntity> userEntities = StreamSupport.stream(iterable.spliterator(), false)
+
+  public List<RightDto> saveAll(List<RightDto> rights) {
+    Iterable<RightEntity> userEntities = rights.stream()
             .map(RightMapper::from)
             .collect(Collectors.toList());
     return StreamSupport.stream(rightRepository.saveAll(userEntities).spliterator(), false)
@@ -39,21 +39,25 @@ public class RightService {
             .collect(Collectors.toList());
   }
 
-  @Rights(rights = Right.ADMIN_READ)
-  public void deleteById(String id) {
-    rightRepository.deleteById(id);
+  public void deleteByPrimaryAndSecondary(String primaryKey, String secondaryKey) {
+    rightRepository.deleteByPrimaryAndSecondary(primaryKey, secondaryKey);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public RightDto findById(String id) {
     return rightRepository.findById(id)
             .map(RightMapper::to)
             .orElseThrow(() -> new NotFoundException("Resource not found"));
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public Page<RightDto> findAll(Pageable pageable) {
     return rightRepository.findAll(pageable)
             .map(RightMapper::to);
   }
+
+  public Collection<RightDto> findByPrimaryAndSecondary(String primaryKey, String secondaryKey) {
+    Collection<RightEntity> entities =
+            rightRepository.findByPrimaryAndSecondary(primaryKey, secondaryKey, 100);
+    return entities.stream().map(e -> RightMapper.to(e)).collect(Collectors.toSet());
+  }
+
 }

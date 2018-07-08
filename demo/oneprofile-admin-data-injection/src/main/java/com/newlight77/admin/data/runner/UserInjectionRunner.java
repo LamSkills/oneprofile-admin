@@ -21,14 +21,25 @@ public class UserInjectionRunner implements CommandLineRunner {
 
   @Override
   public void run(final String... args) throws Exception {
-    RightEntity right = RightEntity.builder()
+    RightEntity right1 = RightEntity.builder()
             .primary("newlight77@gmail.com")
-            .secondary("UserService")
+            .secondary("UserController")
             .rights(Sets.newHashSet(Right.ADMIN_WRITE, Right.ADMIN_READ, Right.ADMIN_DELETE))
             .build();
+    RightEntity right2 = RightEntity.builder()
+            .primary("newlight77@gmail.com")
+            .secondary("RoleController")
+            .rights(Sets.newHashSet(Right.ADMIN_WRITE, Right.ADMIN_READ, Right.ADMIN_DELETE))
+            .build();
+    RightEntity right3 = RightEntity.builder()
+            .primary("newlight77@gmail.com")
+            .secondary("RightController")
+            .rights(Sets.newHashSet(Right.ADMIN_WRITE, Right.ADMIN_READ, Right.ADMIN_DELETE))
+            .build();
+
     RoleEntity role = RoleEntity.builder()
         .name("admin")
-        .rights(Sets.newHashSet(right))
+        .rights(Sets.newHashSet(right1, right2, right3))
         .build();
     AccountEntity account = AccountEntity.builder()
         .name("default")

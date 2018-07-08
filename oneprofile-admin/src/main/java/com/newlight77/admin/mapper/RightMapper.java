@@ -6,6 +6,8 @@ import com.newlight77.admin.neo4j.RightEntity;
 import com.newlight77.admin.neo4j.UserEntity;
 import com.newlight77.right.model.Right;
 
+import java.time.Instant;
+
 public class RightMapper {
 
   public static RightDto to(RightEntity entity) {
@@ -24,7 +26,7 @@ public class RightMapper {
             .secondary(dto.getSecondary())
             .rights(dto.getRights())
             .tempRights(dto.getTempRights())
-            .modificationDate(dto.getModificationDate())
+            .modificationDate(Instant.now())
         .build();
   }
 }

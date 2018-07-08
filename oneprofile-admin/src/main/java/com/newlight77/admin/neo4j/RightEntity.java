@@ -3,10 +3,8 @@ package com.newlight77.admin.neo4j;
 import com.newlight77.right.model.Right;
 import com.newlight77.right.model.TemporaryRight;
 import lombok.*;
-import org.neo4j.ogm.annotation.CompositeIndex;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.annotation.*;
+import org.neo4j.ogm.id.UuidStrategy;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -26,9 +24,11 @@ public class RightEntity implements Serializable{
   public RightEntity() {}
 
   @Id
-//  @GeneratedValue(strategy = UuidStrategy.class)
-//  private String uid;
+  @GeneratedValue(strategy = UuidStrategy.class)
+  private String uid;
+  @Index
   private String primary;
+  @Index
   private String secondary;
   private Set<Right> rights;
   private Set<TemporaryRight> tempRights;

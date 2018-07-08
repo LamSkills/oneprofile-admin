@@ -24,12 +24,10 @@ public class RoleService {
     this.roleRepository = roleRepository;
   }
 
-  @Rights(rights = Right.ADMIN_WRITE)
   public RoleDto save(RoleDto dto) {
     RoleEntity entity = RoleMapper.from(dto);
     return RoleMapper.to(roleRepository.save(entity));
   }
-  @Rights(rights = Right.ADMIN_WRITE)
   public List<RoleDto> saveAll(Iterable<RoleDto> iterable) {
     Iterable<RoleEntity> userEntities = StreamSupport.stream(iterable.spliterator(), false)
             .map(RoleMapper::from)
@@ -39,19 +37,16 @@ public class RoleService {
             .collect(Collectors.toList());
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public void deleteById(String id) {
     roleRepository.deleteById(id);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public RoleDto findById(String id) {
     return roleRepository.findById(id)
             .map(RoleMapper::to)
             .orElseThrow(() -> new NotFoundException("Resource not found"));
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public Page<RoleDto> findAll(Pageable pageable) {
     return roleRepository.findAll(pageable)
             .map(RoleMapper::to);

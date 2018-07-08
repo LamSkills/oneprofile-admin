@@ -26,12 +26,10 @@ public class AccountService {
     this.accountRepository = accountRepository;
   }
 
-  @Rights(rights = Right.ADMIN_WRITE)
   public AccountDto save(AccountDto dto) {
     AccountEntity entity = AccountMapper.from(dto);
     return AccountMapper.to(accountRepository.save(entity));
   }
-  @Rights(rights = Right.ADMIN_WRITE)
   public List<AccountDto> saveAll(Iterable<AccountDto> iterable) {
     Iterable<AccountEntity> userEntities = StreamSupport.stream(iterable.spliterator(), false)
             .map(AccountMapper::from)
@@ -41,19 +39,16 @@ public class AccountService {
             .collect(Collectors.toList());
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public void deleteById(String id) {
     accountRepository.deleteById(id);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public AccountDto findById(String id) {
     return accountRepository.findById(id)
             .map(AccountMapper::to)
             .orElseThrow(() -> new NotFoundException("Resource not found"));
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   public Page<AccountDto> findAll(Pageable pageable) {
     return accountRepository.findAll(pageable)
             .map(AccountMapper::to);
