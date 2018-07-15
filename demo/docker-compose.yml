@@ -2,25 +2,34 @@ version: '3'
 
 services:
 
-    admin-demo:
+    admin:
       image: java:8-alpine
-      hostname: client
+      hostname: admin
       links:
         - neo4j
       ports:
         - "8080:8080"
         - "5002:5002"
       volumes:
-        - ./oneprofile-admin-data-injection/src/main/resources/data/user.json:/data/user.json
         - ./docker/config/admin/run.sh:/demo/run.sh
         - ./docker/config/admin/logback.xml:/demo/config/logback.xml
         - ./docker/config/admin/application.yml:/demo/config/application.yml
-        - ./docker/config/admin/spark.properties:/demo/config/spark.properties
-        - ./oneprofile-admin-data-injection/target/oneprofile-admin-data-injection-fat-exec.jar:/demo/jars/app-fat-exec.jar
+        - ../oneprofile-admin/target/oneprofile-admin-fat-exec.jar:/demo/jars/app-fat-exec.jar
       working_dir: "/demo"
 #      command: "java -jar /demo/jars/app-fat-exec.jar"
 #      command: "java -jar /demo/jars/app-fat-exec.jar --jwt.publickey.path=/demo/config/key.pub"
       command: "/demo/run.sh 5002"
+
+    admin-angular:
+      image: nginx:alpine
+      hostname: angular
+      links:
+        - admin
+      ports:
+        - "80:80"
+      volumes:
+        - ../oneprofile-admin-angular/dist/oneprofile-admin:/usr/share/nginx/html
+      working_dir: "/demo"
 
     neo4j:
       image: neo4j:latest
