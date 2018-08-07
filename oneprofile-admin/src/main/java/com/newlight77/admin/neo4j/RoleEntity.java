@@ -6,7 +6,6 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -22,12 +21,11 @@ public class RoleEntity implements Serializable{
 
   @Id
   private String name;
-//  private Set<String> rights;
 
   @Relationship(type = "HAS_ROLE", direction = Relationship.INCOMING)
-  private Set<UserRoleRelationEntity> userRoles;
+  private Set<AccountRoleRelationEntity> userRoles;
 
-  @Relationship(type = "ROLE_RIGHT", direction = Relationship.OUTGOING)
+  @Relationship(type = "ROLE_RIGHT")
   private Set<RightEntity> rights;
 
 }

@@ -9,7 +9,7 @@ import org.neo4j.ogm.annotation.*;
 @Getter
 @ToString
 @EqualsAndHashCode
-@RelationshipEntity(type = "HAS_ROLE")
+@RelationshipEntity(type = "HAS_RIGHT")
 public class RoleRightRelationEntity {
 
   @Id @GeneratedValue

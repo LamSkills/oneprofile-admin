@@ -11,7 +11,7 @@ import org.neo4j.ogm.annotation.*;
 @Getter
 @ToString
 @EqualsAndHashCode
-@RelationshipEntity(type = "USER_ACCOUNT")
+@RelationshipEntity(type = "HAS_ACCOUNT")
 public class UserAccountRelationEntity {
 
   @Id @GeneratedValue

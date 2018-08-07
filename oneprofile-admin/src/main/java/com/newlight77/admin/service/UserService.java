@@ -56,8 +56,8 @@ public class UserService {
     }
 
     public List<UserDto> findAll() {
-        Collection<UserEntity> accounts = userRepository.userAccounts(100);
-        return StreamSupport.stream(accounts.spliterator(), false)
+        Collection<UserEntity> users = userRepository.userAccounts(100);
+        return StreamSupport.stream(users.spliterator(), false)
                 .map(UserMapper::to)
                 .collect(Collectors.toList());
     }

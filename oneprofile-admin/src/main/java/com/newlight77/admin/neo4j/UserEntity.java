@@ -27,7 +27,7 @@ public class UserEntity implements Serializable {
   private String lastname;
   private String username;
 
-  @Relationship(type = "USER_ACCOUNT", direction = Relationship.OUTGOING)
+  @Relationship(type = "HAS_ACCOUNT")
   private Set<AccountEntity> accounts;
 
 }

@@ -10,7 +10,7 @@ import org.neo4j.ogm.annotation.*;
 @ToString
 @EqualsAndHashCode
 @RelationshipEntity(type = "HAS_ROLE")
-public class UserRoleRelationEntity {
+public class AccountRoleRelationEntity {
 
   @Id @GeneratedValue
   private Long id;

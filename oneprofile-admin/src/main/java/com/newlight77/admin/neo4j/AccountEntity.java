@@ -25,10 +25,10 @@ public class AccountEntity implements Serializable{
   private String id;
   private String name;
 
-  @Relationship(type = "USER_ACCOUNT", direction = Relationship.INCOMING)
-  private UserEntity user;
+  @Relationship(type = "HAS_ACCOUNT", direction = Relationship.INCOMING)
+  private UserAccountRelationEntity userAccounts;
 
-  @Relationship(type = "HAS_ROLE", direction = Relationship.OUTGOING)
+  @Relationship(type = "HAS_ROLE")
   private Set<RoleEntity> roles;
 
 }

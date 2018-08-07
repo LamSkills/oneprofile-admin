@@ -34,6 +34,6 @@ public class RightEntity implements Serializable{
   private Instant modificationDate;
 
   @Relationship(type = "ROLE_RIGHT", direction = Relationship.INCOMING)
-  private RoleEntity role;
+  private RoleRightRelationEntity roleRight;
 
 }
