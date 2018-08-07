@@ -74,4 +74,9 @@ public class UserController {
     return userService.userAccounts();
   }
 
+  @GetMapping(value = "/unsecure")
+  public Collection<UserDto> findAll() {
+    return userService.findAll();
+  }
+
 }

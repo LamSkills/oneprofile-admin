@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Builder
 @Getter
 @ToString

@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.util.Set;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Builder
 @Getter
 @ToString
@@ -20,8 +21,6 @@ import java.util.Set;
 public class RightEntity implements Serializable{
 
   private static final long serialVersionUID = 2196530990380331933L;
-
-  public RightEntity() {}
 
   @Id
   @GeneratedValue(strategy = UuidStrategy.class)

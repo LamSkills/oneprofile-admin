@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Builder
 @Getter
 @ToString

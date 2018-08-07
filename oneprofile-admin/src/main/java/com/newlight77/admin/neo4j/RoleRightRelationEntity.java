@@ -4,6 +4,7 @@ import lombok.*;
 import org.neo4j.ogm.annotation.*;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Builder
 @Getter
 @ToString

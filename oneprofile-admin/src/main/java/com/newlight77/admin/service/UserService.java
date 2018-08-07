@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -54,6 +55,13 @@ public class UserService {
                 .map(UserMapper::to);
     }
 
+    public List<UserDto> findAll() {
+        Collection<UserEntity> accounts = userRepository.userAccounts(100);
+        return StreamSupport.stream(accounts.spliterator(), false)
+                .map(UserMapper::to)
+                .collect(Collectors.toList());
+    }
+
     public List<UserDto> findByUsername(String username) {
         log.info("findByFirstname with username={}", username);
         return userRepository.findByUsername(username)
@@ -71,7 +79,7 @@ public class UserService {
     }
 
     public List<UserDto> userRoles() {
-        return userRepository.userRoles(LIMIT)
+        return userRepository.graph(LIMIT)
                 .stream()
                 .map(UserMapper::to)
                 .collect(Collectors.toList());
