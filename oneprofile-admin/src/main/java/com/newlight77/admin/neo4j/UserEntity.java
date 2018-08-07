@@ -8,6 +8,7 @@ import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.id.UuidStrategy;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -16,18 +17,17 @@ import java.util.Set;
 @Getter
 @ToString
 @EqualsAndHashCode
-@NodeEntity(label = "User")
+//@NodeEntity(label = "User")
 public class UserEntity implements Serializable {
 
   private static final long serialVersionUID = -2587934582432669382L;
 
-  @Id @GeneratedValue(strategy = UuidStrategy.class)
+//  @Id @GeneratedValue(strategy = UuidStrategy.class)
   private String uid;
   private String firstname;
   private String lastname;
   private String username;
 
-  @Relationship(type = "HAS_ACCOUNT")
-  private Set<AccountEntity> accounts;
-
+//  @Relationship(type = "HAS_ACCOUNT")
+  private Set<AccountEntity> accounts = new HashSet<>();
 }
