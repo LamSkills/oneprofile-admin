@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -56,7 +55,7 @@ public class UserService {
     }
 
     public List<UserDto> findAll() {
-        Collection<UserEntity> users = userRepository.userAccounts(100);
+        Iterable<UserEntity> users = userRepository.findAll(3);
         return StreamSupport.stream(users.spliterator(), false)
                 .map(UserMapper::to)
                 .collect(Collectors.toList());
@@ -78,16 +77,9 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public List<UserDto> userRoles() {
-        return userRepository.graph(LIMIT)
-                .stream()
-                .map(UserMapper::to)
-                .collect(Collectors.toList());
-    }
-
-    public List<UserDto> userAccounts() {
-        return userRepository.userAccounts(LIMIT)
-                .stream()
+    public List<UserDto> graph() {
+        Iterable<UserEntity> users = userRepository.graph(100);
+        return StreamSupport.stream(users.spliterator(), false)
                 .map(UserMapper::to)
                 .collect(Collectors.toList());
     }

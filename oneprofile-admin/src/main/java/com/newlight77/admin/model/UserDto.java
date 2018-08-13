@@ -13,5 +13,5 @@ public class UserDto {
   private String firstname;
   private String lastname;
   private String username;
-  private Set<AccountDto> accounts;
+  private Set<RoleDto> roles;
 }

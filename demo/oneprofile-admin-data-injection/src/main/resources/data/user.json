@@ -1,5 +1,5 @@
 [
-  {"lastname" : "TO", "firstname" : "Kong", "username" : "newlight77@gmail.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "owner", "rights": [{"primary": "newlight77@gmail.com", "secondary": "UserService", "rights" : ["admin_read", "admin_write", "admin_delete"]]}}]}]},
-  {"lastname" : "LAMOUCHI", "firstname" : "Nebrass", "username" : "lnibrass@gmail.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "master", "rights" : [{"primary": "lnibrass@gmail.com", "secondary": "UserService", "rights" : ["admin_read", "admin_write", "admin_delete"]}}]}]},
-  {"lastname" : "GUIMEZANES", "firstname" : "benoit", "username" : "b.guimezane@groupeonepoint.com", "accounts" : [{"name" : "default", "roles" : [{"name" : "developer", "rights" : [{"primary": "b.guimezane@groupeonepoint.com", "secondary": "UserService", "rights" : ["admin_read"]}]}]}]}
+  {"lastname" : "TO", "firstname" : "Kong", "username" : "newlight77@gmail.com", "roles" : [{"name" : "owner", "rights": [{"primary": "newlight77@gmail.com", "secondary": "UserService", "rights" : ["admin_read", "admin_write", "admin_delete"]}]}]},
+  {"lastname" : "LAMOUCHI", "firstname" : "Nebrass", "username" : "lnibrass@gmail.com", "roles" : [{"name" : "master", "rights" : [{"primary": "lnibrass@gmail.com", "secondary": "UserService", "rights" : ["admin_read", "admin_write", "admin_delete"]}]}]},
+  {"lastname" : "GUIMEZANES", "firstname" : "benoit", "username" : "b.guimezane@groupeonepoint.com", "roles" : [{"name" : "developer", "rights" : [{"primary": "b.guimezane@groupeonepoint.com", "secondary": "UserService", "rights" : ["admin_read"]}]}]}
 ]

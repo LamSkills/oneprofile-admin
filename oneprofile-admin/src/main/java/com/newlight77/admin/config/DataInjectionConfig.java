@@ -1,7 +1,6 @@
-package com.newlight77.admin.data.config;
+package com.newlight77.admin.config;
 
-import com.newlight77.admin.data.runner.UserInjectionRunner;
-import com.newlight77.admin.data.runner.UserJsonInjectionRunner;
+import com.newlight77.admin.UserInjectionRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -13,14 +12,9 @@ import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 @EntityScan(basePackages = "com.newlight77.admin.neo4j")
 public class DataInjectionConfig {
 
-//  @Bean
-//  CommandLineRunner userInjectionRunner() {
-//    return new UserInjectionRunner();
-//  }
-
   @Bean
-  CommandLineRunner userJsonInjectionRunner() {
-    return new UserJsonInjectionRunner();
+  CommandLineRunner userInjectionRunner() {
+    return new UserInjectionRunner();
   }
 
 }

@@ -1,6 +1,5 @@
 package com.newlight77.admin.data.csv;
 
-import com.newlight77.admin.neo4j.AccountEntity;
 import com.newlight77.admin.neo4j.RightEntity;
 import com.newlight77.admin.neo4j.RoleEntity;
 import com.newlight77.admin.neo4j.UserEntity;
@@ -18,28 +17,14 @@ public class SparkUserMapper implements MapFunction<Row, UserEntity> {
 
     @Override
     public UserEntity call(Row row) {
-        Set<Object> accountSet = ((WrappedArray<Object>) row.getAs("accounts")).toSet();
-        java.util.Set<AccountEntity> accounts = accounts(accountSet);
+        Set<Object> roleSet = ((WrappedArray<Object>) row.getAs("roles")).toSet();
+        java.util.Set<RoleEntity> roles = roles(roleSet);
         return UserEntity.builder()
                 .lastname(((String) row.getAs("lastname")).trim())
                 .firstname(((String) row.getAs("firstname")).trim())
                 .username(((String) row.getAs("username")).trim())
-                .accounts(accounts)
+                .roles(roles)
                 .build();
-    }
-
-    private java.util.Set<AccountEntity> accounts(Set<Object> accountSet) {
-        return JavaConverters.setAsJavaSetConverter(accountSet)
-                .asJava()
-                .stream()
-                .map(a -> {
-                    Row account = (GenericRowWithSchema) a;
-                    String name = (account).getAs("name");
-                    Set<Object> roleSet = ((WrappedArray<Object>) account.getAs("roles")).toSet();
-                    java.util.Set<RoleEntity> roles = roles(roleSet);
-                    return AccountEntity.builder().name(name.trim()).roles(roles).build();
-                })
-                .collect(Collectors.toSet());
     }
 
     private java.util.Set<RoleEntity> roles(Set<Object> roleSet) {

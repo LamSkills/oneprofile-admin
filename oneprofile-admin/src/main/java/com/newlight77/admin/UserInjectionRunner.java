@@ -1,4 +1,4 @@
-package com.newlight77.admin.data.runner;
+package com.newlight77.admin;
 
 import com.newlight77.admin.neo4j.*;
 import com.newlight77.admin.repository.UserRepository;

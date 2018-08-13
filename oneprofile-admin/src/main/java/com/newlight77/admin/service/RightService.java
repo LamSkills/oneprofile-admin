@@ -5,8 +5,6 @@ import com.newlight77.admin.model.RightDto;
 import com.newlight77.admin.neo4j.RightEntity;
 import com.newlight77.admin.repository.RightRepository;
 import com.newlight77.exception.NotFoundException;
-import com.newlight77.right.aspect.Rights;
-import com.newlight77.right.model.Right;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,7 +55,9 @@ public class RightService {
   public Collection<RightDto> findByPrimaryAndSecondary(String primaryKey, String secondaryKey) {
     Collection<RightEntity> entities =
             rightRepository.findByPrimaryAndSecondary(primaryKey, secondaryKey, 100);
-    return entities.stream().map(e -> RightMapper.to(e)).collect(Collectors.toSet());
+    return entities.stream()
+            .map(e -> RightMapper.to(e))
+            .collect(Collectors.toSet());
   }
 
 }

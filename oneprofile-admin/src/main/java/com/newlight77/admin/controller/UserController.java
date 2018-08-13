@@ -65,18 +65,17 @@ public class UserController {
   @Rights(rights = Right.ADMIN_READ)
   @GetMapping(value = "/roles")
   public Collection<UserDto> userRoles(@RequestHeader String primary) {
-    return userService.userRoles();
-  }
-
-  @Rights(rights = Right.ADMIN_READ)
-  @GetMapping(value = "/accounts")
-  public Collection<UserDto> userAccounts(@RequestHeader String primary) {
-    return userService.userAccounts();
+    return userService.findAll();
   }
 
   @GetMapping(value = "/unsecure")
   public Collection<UserDto> findAll() {
     return userService.findAll();
+  }
+
+  @GetMapping(value = "/unsecure/graph")
+  public Collection<UserDto> graph() {
+    return userService.graph();
   }
 
 }

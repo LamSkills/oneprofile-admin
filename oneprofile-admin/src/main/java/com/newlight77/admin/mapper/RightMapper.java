@@ -1,10 +1,7 @@
 package com.newlight77.admin.mapper;
 
 import com.newlight77.admin.model.RightDto;
-import com.newlight77.admin.model.UserDto;
 import com.newlight77.admin.neo4j.RightEntity;
-import com.newlight77.admin.neo4j.UserEntity;
-import com.newlight77.right.model.Right;
 
 import java.time.Instant;
 
