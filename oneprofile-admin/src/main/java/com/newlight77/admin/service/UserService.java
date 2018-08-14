@@ -77,10 +77,4 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public List<UserDto> graph() {
-        Iterable<UserEntity> users = userRepository.graph(100);
-        return StreamSupport.stream(users.spliterator(), false)
-                .map(UserMapper::to)
-                .collect(Collectors.toList());
-    }
 }

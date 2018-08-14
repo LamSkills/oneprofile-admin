@@ -19,6 +19,6 @@ public interface UserRepository extends Neo4jRepository<UserEntity, String> {
                                                     @Param("lastname") String lastname);
 
   @Query("MATCH (u:User)-[ur:HAS_ROLE]->(ro:Role)-[rr:HAS_RIGHT]->(ri:Right) RETURN u,ur,ro,rr,ri LIMIT {limit}")
-  Collection<UserEntity> graph(@Param("limit") int limit);
+  Collection<UserEntity> userGraph(@Param("limit") int limit);
 
 }

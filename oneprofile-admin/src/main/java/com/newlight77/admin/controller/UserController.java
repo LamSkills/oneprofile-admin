@@ -73,9 +73,4 @@ public class UserController {
     return userService.findAll();
   }
 
-  @GetMapping(value = "/unsecure/graph")
-  public Collection<UserDto> graph() {
-    return userService.graph();
-  }
-
 }

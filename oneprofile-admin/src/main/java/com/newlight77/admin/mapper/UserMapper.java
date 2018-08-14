@@ -18,6 +18,10 @@ public class UserMapper {
 //      roles = entity.getRoles().stream()
 //              .map(RoleMapper::to).collect(Collectors.toSet());
 //    }
+    if (!CollectionUtils.isEmpty(entity.getHasRoles())) {
+      roles = entity.getHasRoles().stream()
+              .map(hasRole -> RoleMapper.to(hasRole.getRole())).collect(Collectors.toSet());
+    }
     return UserDto.builder()
             .firstname(entity.getFirstname())
             .lastname(entity.getLastname())
@@ -35,7 +39,7 @@ public class UserMapper {
             .firstname(dto.getFirstname())
             .lastname(dto.getLastname())
             .username(dto.getUsername())
-//            .roles(entities)
+            .roles(entities)
             .build();
   }
 }
