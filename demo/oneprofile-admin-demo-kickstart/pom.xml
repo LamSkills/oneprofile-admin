@@ -48,10 +48,6 @@
 
     <repositories>
         <repository>
-            <id>localrepository</id>
-            <url>file://Users/kong/.m2/repository</url>
-        </repository>
-        <repository>
             <id>spring-libs-release</id>
             <name>Spring Releases</name>
             <url>https://repo.spring.io/libs-release</url>
