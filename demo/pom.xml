@@ -11,5 +11,7 @@
 
     <modules>
         <module>oneprofile-admin-data-injection</module>
+        <module>oneprofile-admin-demo-kickstart</module>
+        <module>oneprofile-admin-demo-user-graph</module>
     </modules>
 </project>
