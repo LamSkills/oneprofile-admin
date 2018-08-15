@@ -8,7 +8,6 @@ import lombok.*;
 import java.time.Instant;
 import java.util.Set;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
 @ToString

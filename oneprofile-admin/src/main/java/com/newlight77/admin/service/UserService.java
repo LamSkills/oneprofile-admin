@@ -17,8 +17,6 @@ import java.util.stream.StreamSupport;
 @Slf4j
 public class UserService {
 
-    private static final int LIMIT = 1000;
-
     private UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -55,7 +53,7 @@ public class UserService {
     }
 
     public List<UserDto> findAll() {
-        Iterable<UserEntity> users = userRepository.findAll(3);
+        Iterable<UserEntity> users = userRepository.findAll();
         return StreamSupport.stream(users.spliterator(), false)
                 .map(UserMapper::to)
                 .collect(Collectors.toList());

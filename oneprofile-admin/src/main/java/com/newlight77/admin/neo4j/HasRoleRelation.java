@@ -4,12 +4,10 @@ import lombok.*;
 import org.neo4j.ogm.annotation.*;
 import org.neo4j.ogm.id.UuidStrategy;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
-//@ToString
-//@EqualsAndHashCode
 @RelationshipEntity(type = "HAS_ROLE")
 public class HasRoleRelation {
 

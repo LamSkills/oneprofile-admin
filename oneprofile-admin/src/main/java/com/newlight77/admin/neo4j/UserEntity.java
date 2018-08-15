@@ -12,12 +12,10 @@ import org.neo4j.ogm.id.UuidStrategy;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
-//@ToString
-//@EqualsAndHashCode
 @NodeEntity(label = "User")
 public class UserEntity {
 
@@ -27,7 +25,6 @@ public class UserEntity {
 	private String lastname;
 	private String username;
 
-	// for Json import
 	@Relationship(type = "HAS_ROLE")
 	private Set<RoleEntity> roles = new HashSet<>();
 

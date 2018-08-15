@@ -11,12 +11,10 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
-//@ToString
-//@EqualsAndHashCode
 @NodeEntity(label = "Right")
 @CompositeIndex(unique = true, properties = {"primary", "secondary"})
 public class RightEntity {
@@ -36,7 +34,6 @@ public class RightEntity {
   @Relationship(type = "HAS_RIGHT", direction = Relationship.INCOMING)
   private Set<HasRightRelation> hasRights = new HashSet<>();
 
-  // for Json import
   @JsonIgnoreProperties("right")
   @Relationship(type = "HAS_RIGHT", direction = Relationship.INCOMING)
   private RoleEntity role;

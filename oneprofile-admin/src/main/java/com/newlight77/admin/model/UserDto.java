@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.util.Set;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
 @ToString

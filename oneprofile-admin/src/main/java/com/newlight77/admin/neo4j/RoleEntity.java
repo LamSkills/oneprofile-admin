@@ -8,12 +8,10 @@ import org.neo4j.ogm.id.UuidStrategy;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
-//@ToString
-//@EqualsAndHashCode
 @NodeEntity(label = "Role")
 public class RoleEntity {
 
@@ -26,12 +24,6 @@ public class RoleEntity {
     @Relationship(type = "HAS_ROLE", direction = Relationship.INCOMING)
     private Set<HasRoleRelation> hasRoles = new HashSet<>();
 
-
-//    @JsonIgnoreProperties("right")
-//    @Relationship(type = "HAS_ROLE", direction = Relationship.INCOMING)
-//    private UserEntity user;
-
-    // for Json import
     @Relationship(type = "HAS_RIGHT")
     private Set<RightEntity> rights = new HashSet<>();
 
