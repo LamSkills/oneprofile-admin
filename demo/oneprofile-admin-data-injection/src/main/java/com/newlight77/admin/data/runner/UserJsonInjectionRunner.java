@@ -36,17 +36,22 @@ public class UserJsonInjectionRunner implements CommandLineRunner {
 
   @Override
   public void run(final String... args) throws Exception {
-    String path = Paths.get(dataPath, "user.json").toString();
-    if (StringUtils.isBlank(dataPath) || !Files.isDirectory(Paths.get(path))) {
-      path = this.getClass().getResource("/data/user.json").getPath();
+    String path = dataPath;
+    if (!StringUtils.isBlank(System.getProperty("data.path"))) {
+      path = System.getProperty("data.path");
     }
-    LOGGER.info("injecting data from file: {}", path);
+    String filePath = Paths.get(path, "user.json").toString();
+
+    if (!Files.isReadable(Paths.get(filePath))) {
+      filePath = this.getClass().getResource("/data/user.json").getPath();
+    }
+    LOGGER.info("injecting data from file: {}", filePath);
 
     Dataset<UserEntity> ds = sparkSession.sqlContext().read()
         .option("mode", "DROPMALFORMED")
         .option("header", "true")
         .option("charset", "UTF-8")
-        .json(path)
+        .json(filePath)
         .map(new SparkUserMapper(),
             Encoders.kryo(UserEntity.class));
 
