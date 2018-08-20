@@ -5,6 +5,7 @@ import com.newlight77.admin.mapper.UserMapper;
 import com.newlight77.admin.model.UserDto;
 import com.newlight77.admin.neo4j.UserEntity;
 import com.newlight77.admin.repository.UserRepository;
+import com.newlight77.exception.ConflictException;
 import com.newlight77.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -25,7 +26,11 @@ public class UserService {
 
     public UserDto save(UserDto user) {
         UserEntity entity = UserMapper.from(user);
-        return UserMapper.to(userRepository.save(entity));
+        try {
+            return UserMapper.to(userRepository.save(entity));
+        } catch(Exception ex) {
+            throw new ConflictException(ex.getMessage());
+        }
     }
 
     public List<UserDto> saveAll(Iterable<UserDto> iterable) {

@@ -3,10 +3,7 @@ package com.newlight77.admin.neo4j;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.annotation.*;
 import org.neo4j.ogm.id.UuidStrategy;
 
 import javax.validation.constraints.NotEmpty;
@@ -23,10 +20,13 @@ public class UserEntity {
 	@Id @GeneratedValue(strategy = UuidStrategy.class)
 	private String uid;
 	@NotEmpty
+	@Index
 	private String firstname;
 	@NotEmpty
+	@Index
 	private String lastname;
 	@NotEmpty
+	@Index(unique = true)
 	private String username;
 
 	@Relationship(type = "HAS_ROLE")

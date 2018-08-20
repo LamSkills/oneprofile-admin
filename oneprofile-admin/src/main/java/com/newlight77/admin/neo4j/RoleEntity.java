@@ -20,6 +20,7 @@ public class RoleEntity {
     @GeneratedValue(strategy = UuidStrategy.class)
     private String uid;
     @NotEmpty
+    @Index
     private String name;
 
     @JsonIgnoreProperties("right")

@@ -1,5 +1,6 @@
 package com.newlight77.admin.exception;
 
+import com.newlight77.exception.ConflictException;
 import com.newlight77.exception.ExceptionDetail;
 import com.newlight77.exception.ForbiddenException;
 import com.newlight77.exception.UnauthorizedException;
@@ -35,32 +36,6 @@ public class GlobalExceptionHandler {
         .build();
   }
 
-  @ResponseBody
-  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  @ExceptionHandler(Exception.class)
-  public Object handle500Exception(HttpServletRequest request, Exception ex) {
-    return ExceptionDetail.builder()
-        .classname(ex.getClass().getName())
-        .date(Instant.now().toString())
-        .message(ex.getLocalizedMessage())
-        .path(request.getRequestURI())
-        .params(request.getQueryString())
-        .build();
-  }
-
-  @ResponseBody
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler(ResourceAccessException.class)
-  public Object handle404Exception(HttpServletRequest request, Exception ex) {
-    return ExceptionDetail.builder()
-        .classname(ex.getClass().getName())
-        .date(Instant.now().toString())
-        .message(ex.getLocalizedMessage())
-        .path(request.getRequestURI())
-        .params(request.getQueryString())
-        .build();
-  }
-
   @ResponseStatus(HttpStatus.UNAUTHORIZED)
   @ExceptionHandler(UnauthorizedException.class)
   @ResponseBody
@@ -85,6 +60,45 @@ public class GlobalExceptionHandler {
         .path(request.getRequestURI())
         .params(request.getQueryString())
         .build();
+  }
+
+  @ResponseBody
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  @ExceptionHandler(ResourceAccessException.class)
+  public Object handle404Exception(HttpServletRequest request, Exception ex) {
+    return ExceptionDetail.builder()
+            .classname(ex.getClass().getName())
+            .date(Instant.now().toString())
+            .message(ex.getLocalizedMessage())
+            .path(request.getRequestURI())
+            .params(request.getQueryString())
+            .build();
+  }
+
+  @ResponseBody
+  @ResponseStatus(HttpStatus.CONFLICT)
+  @ExceptionHandler(ConflictException.class)
+  public Object handle409Exception(HttpServletRequest request, Exception ex) {
+    return ExceptionDetail.builder()
+            .classname(ex.getClass().getName())
+            .date(Instant.now().toString())
+            .message(ex.getLocalizedMessage())
+            .path(request.getRequestURI())
+            .params(request.getQueryString())
+            .build();
+  }
+
+  @ResponseBody
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  @ExceptionHandler(Exception.class)
+  public Object handle500Exception(HttpServletRequest request, Exception ex) {
+    return ExceptionDetail.builder()
+            .classname(ex.getClass().getName())
+            .date(Instant.now().toString())
+            .message(ex.getLocalizedMessage())
+            .path(request.getRequestURI())
+            .params(request.getQueryString())
+            .build();
   }
 
 }
