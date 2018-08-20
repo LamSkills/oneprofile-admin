@@ -37,8 +37,8 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteById(String id) {
-        userRepository.deleteById(id);
+    public Long deleteByUsername(String username) {
+        return userRepository.deleteByUsername(username);
     }
 
     public UserDto findById(String id) {

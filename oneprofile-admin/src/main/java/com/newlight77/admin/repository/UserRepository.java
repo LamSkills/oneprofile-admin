@@ -15,6 +15,8 @@ public interface UserRepository extends Neo4jRepository<UserEntity, String> {
 
   Collection<UserEntity> findByUsername(@Param("username") String username);
 
+  Long deleteByUsername(@Param("username") String username);
+
   Collection<UserEntity> findByFirstnameAndLastname(@Param("firstname") String firstname,
                                                     @Param("lastname") String lastname);
 

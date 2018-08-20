@@ -2,8 +2,6 @@ package com.newlight77.admin.controller;
 
 import com.newlight77.admin.model.UserDto;
 import com.newlight77.admin.service.UserService;
-import com.newlight77.right.aspect.Rights;
-import com.newlight77.right.model.Right;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,49 +10,43 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/unsecure/users")
+public class UnsecureUserController {
 
   @Autowired
   private UserService userService;
 
-  @Rights(rights = Right.ADMIN_WRITE)
   @PostMapping(value = "")
   public UserDto create(
-          @RequestHeader String primary,
           @RequestBody UserDto user) {
     return userService.save(user);
   }
 
-  @Rights(rights = Right.ADMIN_DELETE)
+  @PutMapping(value = "/{username}")
+  public UserDto updateByUsername(@PathVariable String username, @RequestBody UserDto user) {
+    return userService.save(user);
+  }
+
   @DeleteMapping(value = "/{username}")
-  public Long deleteByUsername(@RequestHeader String primary,
-                         String username) {
+  public Long deleteByUsername(@PathVariable String username) {
     return userService.deleteByUsername(username);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
-  @GetMapping(value = "/{id}")
-  public UserDto findById(@RequestHeader String primary,
-                          String id) {
-    return userService.findById(id);
+  @GetMapping(value = "/{username}")
+  public UserDto findById(@PathVariable String username) {
+    return userService.findById(username);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   @GetMapping(value = "/page")
-  public Page<UserDto> findAll(@RequestHeader String primary,
-                               Pageable pageable) {
+  public Page<UserDto> findAll(Pageable pageable) {
     return userService.findAll(pageable);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   @GetMapping(value = "", params = {"username"})
-  public Collection<UserDto> findByUsername(@RequestHeader String primary,
-                                            @RequestParam String username) {
+  public Collection<UserDto> findByUsername(@RequestParam String username) {
     return userService.findByUsername(username);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
   @GetMapping(value = "", params = {"firstname", "lastname"})
   public Collection<UserDto> find(@RequestHeader String primary,
                                   @RequestParam String firstname,
@@ -62,9 +54,8 @@ public class UserController {
     return userService.find(firstname, lastname);
   }
 
-  @Rights(rights = Right.ADMIN_READ)
-  @GetMapping(value = "/roles")
-  public Collection<UserDto> userRoles(@RequestHeader String primary) {
+  @GetMapping(value = "")
+  public Collection<UserDto> findAll() {
     return userService.findAll();
   }
 
