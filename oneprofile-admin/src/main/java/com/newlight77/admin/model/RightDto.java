@@ -5,6 +5,7 @@ import com.newlight77.right.model.Right;
 import com.newlight77.right.model.TemporaryRight;
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 import java.util.Set;
 
@@ -13,7 +14,9 @@ import java.util.Set;
 @ToString
 @EqualsAndHashCode
 public class RightDto {
+  @NotEmpty
   private String primary;
+  @NotEmpty
   private String secondary;
   private Set<Right> rights;
   private Set<TemporaryRight> tempRights;

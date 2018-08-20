@@ -5,6 +5,7 @@ import lombok.*;
 import org.neo4j.ogm.annotation.*;
 import org.neo4j.ogm.id.UuidStrategy;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public class RoleEntity {
     @Id
     @GeneratedValue(strategy = UuidStrategy.class)
     private String uid;
+    @NotEmpty
     private String name;
 
     @JsonIgnoreProperties("right")

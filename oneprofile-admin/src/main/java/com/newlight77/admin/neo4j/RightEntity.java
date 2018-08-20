@@ -7,6 +7,7 @@ import lombok.*;
 import org.neo4j.ogm.annotation.*;
 import org.neo4j.ogm.id.UuidStrategy;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,9 +23,11 @@ public class RightEntity {
   @Id
   @GeneratedValue(strategy = UuidStrategy.class)
   private String uid;
+  @NotEmpty
   @Index
   private String primary;
   @Index
+  @NotEmpty
   private String secondary;
   private Set<Right> rights;
   private Set<TemporaryRight> tempRights;
