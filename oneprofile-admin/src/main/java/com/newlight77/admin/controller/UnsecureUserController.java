@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+
+// This serves as an example for demo
 @RestController
 @RequestMapping("/unsecure/users")
 public class UnsecureUserController {
@@ -30,11 +32,6 @@ public class UnsecureUserController {
   @DeleteMapping(value = "/{username}")
   public Long deleteByUsername(@PathVariable String username) {
     return userService.deleteByUsername(username);
-  }
-
-  @GetMapping(value = "/{username}")
-  public UserDto findById(@PathVariable String username) {
-    return userService.findById(username);
   }
 
   @GetMapping(value = "/page")

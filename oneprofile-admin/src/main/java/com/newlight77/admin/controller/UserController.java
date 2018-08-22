@@ -26,18 +26,20 @@ public class UserController {
     return userService.save(user);
   }
 
+  @Rights(rights = Right.ADMIN_WRITE)
+  @PutMapping(value = "/{username}")
+  public UserDto updateByUsername(
+          @RequestHeader String primary,
+          @PathVariable String username,
+          @RequestBody UserDto user) {
+    return userService.save(user);
+  }
+
   @Rights(rights = Right.ADMIN_DELETE)
   @DeleteMapping(value = "/{username}")
   public Long deleteByUsername(@RequestHeader String primary,
-                         String username) {
+                               @PathVariable String username) {
     return userService.deleteByUsername(username);
-  }
-
-  @Rights(rights = Right.ADMIN_READ)
-  @GetMapping(value = "/{id}")
-  public UserDto findById(@RequestHeader String primary,
-                          String id) {
-    return userService.findById(id);
   }
 
   @Rights(rights = Right.ADMIN_READ)
@@ -63,8 +65,8 @@ public class UserController {
   }
 
   @Rights(rights = Right.ADMIN_READ)
-  @GetMapping(value = "/roles")
-  public Collection<UserDto> userRoles(@RequestHeader String primary) {
+  @GetMapping(value = "")
+  public Collection<UserDto> findAll(@RequestHeader String primary) {
     return userService.findAll();
   }
 
