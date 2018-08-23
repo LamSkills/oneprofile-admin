@@ -28,46 +28,68 @@ public class UserInjectionRunner implements CommandLineRunner {
             .hasRoles(new HashSet<>())
             .build();
 
-    RoleEntity role = RoleEntity.builder()
+    RoleEntity ownerRole = RoleEntity.builder()
+            .name("owner")
+            .hasRoles(new HashSet<>())
+            .hasRights(new HashSet<>())
+            .build();
+
+    RoleEntity adminRole = RoleEntity.builder()
             .name("admin")
             .hasRoles(new HashSet<>())
             .hasRights(new HashSet<>())
             .build();
 
-    RightEntity right1 = RightEntity.builder()
+    RightEntity ownerRightOnUser = RightEntity.builder()
+            .primary("newlight77@gmail.com")
+            .secondary("UserController")
+            .rights(new HashSet<>(Arrays.asList(Right.OWNER)))
+            .hasRights(new HashSet<>())
+            .build();
+
+    RightEntity adminRightOnUsers = RightEntity.builder()
             .primary("newlight77@gmail.com")
             .secondary("UserController")
             .rights(new HashSet<>(Arrays.asList(Right.ADMIN_WRITE, Right.ADMIN_READ, Right.ADMIN_DELETE)))
             .hasRights(new HashSet<>())
             .build();
-    RightEntity right2 = RightEntity.builder()
+
+    RightEntity adminRightOnRoles = RightEntity.builder()
             .primary("newlight77@gmail.com")
             .secondary("RoleController")
             .rights(new HashSet<>(Arrays.asList(Right.ADMIN_WRITE, Right.ADMIN_READ, Right.ADMIN_DELETE)))
             .hasRights(new HashSet<>())
             .build();
-    RightEntity right3 = RightEntity.builder()
+    RightEntity adminRightOnRights = RightEntity.builder()
             .primary("newlight77@gmail.com")
             .secondary("RightController")
             .rights(new HashSet<>(Arrays.asList(Right.ADMIN_WRITE, Right.ADMIN_READ, Right.ADMIN_DELETE)))
             .hasRights(new HashSet<>())
             .build();
 
-    HasRoleRelation hasRoleRelation = HasRoleRelation.builder().user(user).role(role).build();
-    user.getHasRoles().add(hasRoleRelation);
+    HasRoleRelation hasRoleRelationOwner = HasRoleRelation.builder().user(user).role(ownerRole).build();
+    HasRoleRelation hasRoleRelationAdmin = HasRoleRelation.builder().user(user).role(adminRole).build();
+    user.getHasRoles().add(hasRoleRelationOwner);
+    user.getHasRoles().add(hasRoleRelationAdmin);
 //    role.getHasRoles().add(hasRoleRelation);
 
-    HasRightRelation hasRightRelation1 = HasRightRelation.builder().role(role).right(right1).build();
-    HasRightRelation hasRightRelation2 = HasRightRelation.builder().role(role).right(right2).build();
-    HasRightRelation hasRightRelation3 = HasRightRelation.builder().role(role).right(right3).build();
-    role.getHasRights().add(hasRightRelation1);
-    role.getHasRights().add(hasRightRelation2);
-    role.getHasRights().add(hasRightRelation3);
+    HasRightRelation hasRightRelation1 = HasRightRelation.builder().role(ownerRole).right(ownerRightOnUser).build();
+    HasRightRelation hasRightRelation2 = HasRightRelation.builder().role(adminRole).right(adminRightOnUsers).build();
+    HasRightRelation hasRightRelation3 = HasRightRelation.builder().role(adminRole).right(adminRightOnRoles).build();
+    HasRightRelation hasRightRelation4 = HasRightRelation.builder().role(adminRole).right(adminRightOnRights).build();
+    ownerRole.getHasRights().add(hasRightRelation1);
+    adminRole.getHasRights().add(hasRightRelation2);
+    adminRole.getHasRights().add(hasRightRelation3);
+    adminRole.getHasRights().add(hasRightRelation4);
 
 //    right1.getHasRights().add(hasRightRelation1);
 //    right2.getHasRights().add(hasRightRelation2);
 //    right3.getHasRights().add(hasRightRelation3);
 
-    userRepository.save(user);
+    try {
+      userRepository.save(user);
+    } catch (Exception ex) {
+      LOGGER.error("An error occurred while trying to create user. It might already exist.");
+    }
   }
 }

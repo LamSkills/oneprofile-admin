@@ -20,11 +20,11 @@ logging:
   level:
     org.springframework.security: DEBUG
 
-spring:
-  data:
-    neo4j:
-      username: neo4j
-      password: secret
+#spring:
+#  data:
+#    neo4j:
+#      username: neo4j
+#      password: secret
 
 
 github:
