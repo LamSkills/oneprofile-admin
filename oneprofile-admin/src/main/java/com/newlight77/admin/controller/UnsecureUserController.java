@@ -12,7 +12,7 @@ import java.util.Collection;
 
 // This serves as an example for demo
 @RestController
-@RequestMapping("/unsecure/users")
+@RequestMapping("/api/unsecure/users")
 public class UnsecureUserController {
 
   @Autowired
