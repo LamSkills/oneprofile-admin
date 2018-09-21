@@ -54,7 +54,7 @@ public class AdminApplication extends WebSecurityConfigurerAdapter {
             .antMatcher("/**")
             .requestMatchers()
             .antMatchers(
-                    "/", // permitAll()
+                    "/*", // permitAll()
                     "/login", // authenticated()
                     "/api/unsecure/**",
                     "/me" // authenticated() = true
@@ -62,7 +62,7 @@ public class AdminApplication extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers(
-                    "/", // permitAll()
+//                    "/*", // permitAll()
                     "/api/unsecure/**"
             )
             .permitAll()

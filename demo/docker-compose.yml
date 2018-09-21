@@ -20,17 +20,6 @@ services:
 #      command: "java -jar /demo/jars/app-fat-exec.jar --jwt.publickey.path=/demo/config/key.pub"
       command: "/demo/run.sh 5002"
 
-    admin-angular:
-      image: nginx:alpine
-      hostname: angular
-      links:
-        - admin
-      ports:
-        - "80:80"
-      volumes:
-        - ../oneprofile-admin-angular/dist/oneprofile-admin:/usr/share/nginx/html
-      working_dir: "/demo"
-
     neo4j:
       image: neo4j:latest
       hostname: neo4j
