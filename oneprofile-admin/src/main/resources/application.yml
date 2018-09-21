@@ -4,16 +4,22 @@ server:
   servlet:
     contextPath: /admin
 
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework.security: DEBUG
+
+spring:
+  data:
+    neo4j:
+      username: neo4j
+      password: secret
+      uri: bolt://localhost:7687
+
+data:
+  path: /data
+
 security:
-# deprecated
-  basic:
-    enabled: true
-  user:
-    name: user
-    password: password
-    roles: USER
-  ignored:
-  - "*.bundle.*"
   oauth2:
 #    client:
 #      clientId: bd1c0a783ccdd1c9b9e4
@@ -26,13 +32,7 @@ security:
     client:
       client-id: adminclient
       client-secret: adminclientsecret
-      access-token-uri: http://localhost:9999/uaa/oauth/token
-      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
+      access-token-uri: http://localhost:8888/uaa/oauth/token
+      user-authorization-uri: http://localhost:8888/uaa/oauth/authorize
     resource:
-      user-info-uri: http://localhost:9999/uaa/user
-
-
-logging:
-  config: classpath:logback.xml
-  level:
-    org.springframework.security: DEBUG
+      user-info-uri: http://localhost:8888/uaa/user

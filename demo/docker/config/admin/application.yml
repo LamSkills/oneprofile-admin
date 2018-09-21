@@ -14,7 +14,7 @@ spring:
     neo4j:
       username: neo4j
       password: secret
-      uri: bolt://neo4j
+      uri: bolt://neo4j:7687
 
 data:
   path: /data
@@ -30,8 +30,8 @@ security:
 #    resource:
 #      userInfoUri: https://api.github.com/user
     client:
-      client-id: acme
-      client-secret: acmesecret
+      client-id: adminclient
+      client-secret: adminclientsecret
       access-token-uri: http://localhost:8888/uaa/oauth/token
       user-authorization-uri: http://localhost:8888/uaa/oauth/authorize
     resource:
